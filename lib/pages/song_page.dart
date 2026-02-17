@@ -144,13 +144,28 @@ class SongPage extends StatelessWidget {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(formatTime(value.currentDuration)),
+                                Text(
+                                  formatTime(value.currentDuration),
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: Theme.of(
+                                      context,
+                                    ).colorScheme.secondary,
+                                  ),
+                                ),
 
-                                Icon(Icons.shuffle),
+                                //Icon(Icons.shuffle),
 
-                                Icon(Icons.repeat),
-
-                                Text(formatTime(value.totalDuration)),
+                                //Icon(Icons.repeat),
+                                Text(
+                                  formatTime(value.totalDuration),
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: Theme.of(
+                                      context,
+                                    ).colorScheme.secondary,
+                                  ),
+                                ),
                               ],
                             ),
                           ),
