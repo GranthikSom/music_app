@@ -11,6 +11,17 @@ import 'dart:ui';
 class SongPage extends StatelessWidget {
   const SongPage({super.key});
 
+  //min to sec converter
+  String formatTime(Duration duration) {
+    String twoDigitSeconds = duration.inSeconds
+        .remainder(60)
+        .toString()
+        .padLeft(2, '0');
+    String formattedTime = "${duration.inMinutes}:$twoDigitSeconds";
+
+    return formattedTime;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer<PlaylistProvider>(
@@ -130,16 +141,16 @@ class SongPage extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(
                               horizontal: 20.0,
                             ),
-                            child: const Row(
+                            child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text("3:45"),
+                                Text(formatTime(value.currentDuration)),
 
                                 Icon(Icons.shuffle),
 
                                 Icon(Icons.repeat),
 
-                                Text("0:00"),
+                                Text(formatTime(value.totalDuration)),
                               ],
                             ),
                           ),
@@ -154,7 +165,10 @@ class SongPage extends StatelessWidget {
                               min: 0,
                               max: value.totalDuration.inSeconds.toDouble(),
                               activeColor: Colors.green,
-                              onChanged: (value) {},
+                              onChanged: (double double) {},
+                              onChangeEnd: (double double) {
+                                value.seek(Duration(seconds: double.toInt()));
+                              },
                             ),
                           ),
                         ],
@@ -167,7 +181,7 @@ class SongPage extends StatelessWidget {
                           SongBall(
                             child: Expanded(
                               child: GestureDetector(
-                                onTap: () {},
+                                onTap: value.playPrevious,
                                 child: CircleAvatar(
                                   foregroundColor: Theme.of(
                                     context,
@@ -185,7 +199,7 @@ class SongPage extends StatelessWidget {
                             child: Expanded(
                               flex: 2,
                               child: GestureDetector(
-                                onTap: () {},
+                                onTap: value.pauseOrResume,
                                 child: CircleAvatar(
                                   foregroundColor: Theme.of(
                                     context,
@@ -194,7 +208,11 @@ class SongPage extends StatelessWidget {
                                     context,
                                   ).colorScheme.primary,
                                   radius: 34,
-                                  child: Icon(Icons.play_arrow),
+                                  child: Icon(
+                                    value.isPlaying
+                                        ? Icons.pause
+                                        : Icons.play_arrow,
+                                  ),
                                 ),
                               ),
                             ),
@@ -203,7 +221,7 @@ class SongPage extends StatelessWidget {
                           SongBall(
                             child: Expanded(
                               child: GestureDetector(
-                                onTap: () {},
+                                onTap: value.playNext,
                                 child: CircleAvatar(
                                   foregroundColor: Theme.of(
                                     context,
