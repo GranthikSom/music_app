@@ -1,17 +1,20 @@
-# flutter_application_1
+# Granthik Music App
 
-A new Flutter project.
+A simple Flutter music application for playing songs, creating playlists, and browsing albums.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## 🌟 Features
 
-A few resources to get you started if this is your first Flutter project:
+- Play / pause songs
+- Skip to next / previous track
+- Browse songs and albums
+- Favorite songs (like button placeholder)
+- Playlist management
+- Works on **Android**, **iOS**, and **Web** (Flutter Web)
+- Simple, clean UI with album artwork and background blur
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+---
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-# git_learn
+## screenshots
+
