@@ -1,4 +1,4 @@
-# Granthik Music App
+## Music App
 
 A simple Flutter music application for playing songs, creating playlists, and browsing albums.
 
