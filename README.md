@@ -1,8 +1,6 @@
-<<<<<<< HEAD
-## Music App
-=======
+
 ## MUSIX 
->>>>>>> d242721 (readme)
+
 
 A music application for playing songs, posting songs, browsing albums and many more.
 
