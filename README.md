@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 ## Music App
+=======
+## MUSIX 
+>>>>>>> d242721 (readme)
 
-A simple Flutter music application for playing songs, creating playlists, and browsing albums.
+A music application for playing songs, posting songs, browsing albums and many more.
 
 ---
 
@@ -18,3 +22,11 @@ A simple Flutter music application for playing songs, creating playlists, and br
 
 ## screenshots
 
+
+
+
+## next
+ 
+> login system 
+> music posting
+> history
