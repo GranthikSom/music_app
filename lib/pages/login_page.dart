@@ -3,6 +3,7 @@ import 'package:flutter_application_1/components/My_drawer.dart';
 import 'package:flutter_application_1/models/playlist_provider.dart';
 import 'package:provider/provider.dart';
 
+import '../components/bottombar.dart';
 import '../models/song_data.dart';
 import 'song_page.dart';
 
@@ -61,6 +62,7 @@ class _LoginPageState extends State<LoginPage> {
           );
         },
       ),
+      bottomNavigationBar: const Bottombar(),
     );
   }
 }

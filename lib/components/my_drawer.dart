@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/pages/login_page.dart';
 import 'package:flutter_application_1/pages/settings_page.dart';
 
 import '../pages/profile_page.dart';
@@ -9,31 +10,27 @@ class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Theme.of(context).colorScheme.secondary,
+      backgroundColor: Theme.of(
+        context,
+      ).colorScheme.secondary.withOpacity(0.85),
       child: Column(
         children: [
-          //logo
-          DrawerHeader(
-            child: Center(
-              child: Icon(
-                Icons.music_note,
-                size: 50,
-                color: Theme.of(context).colorScheme.inversePrimary,
-              ),
-            ),
-          ),
-
-          //home title
           Padding(
-            padding: const EdgeInsets.only(left: 25, top: 25),
+            padding: const EdgeInsets.only(left: 25, top: 80),
             child: ListTile(
               title: const Text('H O M E'),
               leading: const Icon(Icons.home),
-              onTap: () => Navigator.pop(context),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginPage()),
+                );
+              },
             ),
           ),
 
-          //settings
+          const SizedBox(height: 15),
           Padding(
             padding: const EdgeInsets.only(left: 25, top: 0),
             child: ListTile(
@@ -49,6 +46,7 @@ class MyDrawer extends StatelessWidget {
               },
             ),
           ),
+          const SizedBox(height: 15),
           Padding(
             padding: const EdgeInsets.only(left: 25, top: 0),
             child: ListTile(
