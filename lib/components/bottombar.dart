@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/pages/login_page.dart';
 import 'package:flutter_application_1/pages/post_page.dart';
 import 'package:flutter_application_1/pages/profile_page.dart';
 
@@ -8,7 +9,7 @@ class Bottombar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
-      height: 40,
+      height: 50,
       color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -26,7 +27,17 @@ class Bottombar extends StatelessWidget {
               );
             },
           ),
-          IconButton(icon: const Icon(Icons.home), onPressed: () {}),
+          IconButton(
+            icon: const Icon(Icons.home),
+            onPressed: () {
+              Navigator.pop(context);
+
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => LoginPage()),
+              );
+            },
+          ),
           IconButton(
             icon: const Icon(Icons.person),
             onPressed: () {
