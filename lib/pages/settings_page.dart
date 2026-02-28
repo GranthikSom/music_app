@@ -2,9 +2,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/themes/theme_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
+  Future<void> openWebsite() async {
+    final Uri url = Uri.parse('https://github.com/GranthikSom/music_app');
+
+    if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
+      throw Exception('Could not launch $url');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,27 +49,32 @@ class SettingsPage extends StatelessWidget {
             ),
           ),
 
-          Container(
-            height: 80,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.primary,
-              borderRadius: BorderRadius.circular(12),
-            ),
-            margin: EdgeInsets.all(20),
-            padding: EdgeInsets.all(20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'ABOUT ',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    textBaseline: TextBaseline.alphabetic,
-                    fontSize: 20,
+          GestureDetector(
+            onTap: () {
+              openWebsite();
+            },
+            child: Container(
+              height: 80,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.primary,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              margin: EdgeInsets.all(20),
+              padding: EdgeInsets.all(20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'ABOUT ',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      textBaseline: TextBaseline.alphabetic,
+                      fontSize: 20,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
           Container(
