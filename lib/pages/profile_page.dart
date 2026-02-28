@@ -9,43 +9,51 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //appBar: AppBar(title: const Text('welcome "USER"')),
+      appBar: AppBar(title: const Text('')),
       drawer: MyDrawer(),
-      body: Column(
+      body: Row(
         children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 70),
-            child: Row(
+          Expanded(
+            child: Column(
               children: [
-                const SizedBox(width: 20),
-                SongBall(
-                  child: Expanded(
-                    child: GestureDetector(
-                      onTap: () {},
-                      child: CircleAvatar(
-                        foregroundColor: Theme.of(
-                          context,
-                        ).colorScheme.inversePrimary,
-                        backgroundColor: Theme.of(context).colorScheme.primary,
-                        radius: 40,
-                        child: Icon(Icons.person),
+                Padding(
+                  padding: const EdgeInsets.only(top: 1),
+                  child: Row(
+                    children: [
+                      const SizedBox(width: 20),
+                      SongBall(
+                        child: Expanded(
+                          child: GestureDetector(
+                            onTap: () {},
+                            child: CircleAvatar(
+                              foregroundColor: Theme.of(
+                                context,
+                              ).colorScheme.inversePrimary,
+                              backgroundColor: Theme.of(
+                                context,
+                              ).colorScheme.primary,
+                              radius: 40,
+                              child: Icon(Icons.person),
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
+                      const SizedBox(width: 10),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Faxektie op',
+                            style: TextStyle(fontSize: 20, color: Colors.black),
+                          ),
+                          Text(
+                            '@niggaslayer67',
+                            style: TextStyle(fontSize: 10, color: Colors.black),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
-                ),
-                const SizedBox(width: 10),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Faxektie op',
-                      style: TextStyle(fontSize: 20, color: Colors.black),
-                    ),
-                    Text(
-                      '@niggaslayer67',
-                      style: TextStyle(fontSize: 10, color: Colors.black),
-                    ),
-                  ],
                 ),
               ],
             ),
