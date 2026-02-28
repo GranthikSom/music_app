@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/components/My_drawer.dart';
 import 'package:flutter_application_1/components/bottombar.dart';
 import 'package:flutter_application_1/components/song_ball.dart';
+import 'package:flutter_application_1/pages/settings_page.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -11,52 +12,83 @@ class ProfilePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('')),
       drawer: MyDrawer(),
-      body: Row(
+      body: Column(
         children: [
-          Expanded(
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 1),
-                  child: Row(
-                    children: [
-                      const SizedBox(width: 20),
-                      SongBall(
-                        child: Expanded(
-                          child: GestureDetector(
-                            onTap: () {},
-                            child: CircleAvatar(
-                              foregroundColor: Theme.of(
-                                context,
-                              ).colorScheme.inversePrimary,
-                              backgroundColor: Theme.of(
-                                context,
-                              ).colorScheme.primary,
-                              radius: 40,
-                              child: Icon(Icons.person),
+          Row(
+            children: [
+              Expanded(
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 15),
+                      child: Row(
+                        children: [
+                          const SizedBox(width: 20),
+                          SongBall(
+                            child: Expanded(
+                              child: GestureDetector(
+                                onTap: () {},
+                                child: CircleAvatar(
+                                  foregroundColor: Theme.of(
+                                    context,
+                                  ).colorScheme.inversePrimary,
+                                  backgroundColor: Theme.of(
+                                    context,
+                                  ).colorScheme.primary,
+                                  radius: 40,
+                                  child: Icon(Icons.person),
+                                ),
+                              ),
                             ),
                           ),
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Faxektie op',
-                            style: TextStyle(fontSize: 20, color: Colors.black),
+                          const Padding(padding: EdgeInsets.only(right: 10)),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Faxektie op',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              Text(
+                                '@niggaslayer67',
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ],
                           ),
-                          Text(
-                            '@niggaslayer67',
-                            style: TextStyle(fontSize: 10, color: Colors.black),
+                          const Padding(padding: EdgeInsets.only(left: 110)),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.pop(context);
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => SettingsPage(),
+                                ),
+                              );
+                            },
+                            child: Column(
+                              children: [
+                                Icon(
+                                  Icons.settings,
+                                  size: 30,
+                                  color: Theme.of(context).colorScheme.primary,
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ],
       ),
