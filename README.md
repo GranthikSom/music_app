@@ -232,11 +232,11 @@ flutter build web
 - [x] Playlists management
 - [x] Favorites system
 - [x] File uploads
-- [ ] Admin dashboard
-- [ ] Artist profiles
-- [ ] Social features
-- [ ] Search filters
-- [ ] Music recommendations
+- [x] Admin dashboard
+- [x] Artist profiles
+- [x] Social features
+- [x] Search filters
+- [ ] Music recommendations [!kinda]
 
 ---
 
