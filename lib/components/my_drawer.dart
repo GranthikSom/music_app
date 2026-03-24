@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/pages/login_page.dart';
-import 'package:flutter_application_1/pages/settings_page.dart';
-
+import 'package:provider/provider.dart';
+import '../providers/auth_provider.dart';
 import '../pages/profile_page.dart';
+import '../pages/settings_page.dart';
+import '../pages/home_screen.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
@@ -10,55 +11,81 @@ class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Theme.of(context).colorScheme.secondary.withOpacity(0.6),
-      child: Column(
+      child: ListView(
+        padding: EdgeInsets.zero,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 25, top: 80),
-            child: ListTile(
-              title: const Text('H O M E'),
-              leading: const Icon(Icons.home),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => LoginPage()),
+          DrawerHeader(
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.primary,
+            ),
+            child: Consumer<AuthProvider>(
+              builder: (context, auth, child) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    const CircleAvatar(
+                      radius: 30,
+                      child: Icon(Icons.person, size: 40),
+                    ),
+                    const SizedBox(height: 12),
+                    Text(
+                      auth.email ?? 'Guest',
+                      style: const TextStyle(color: Colors.white, fontSize: 16),
+                    ),
+                    Text(
+                      'User ID: ${auth.userId ?? 'N/A'}',
+                      style: const TextStyle(
+                        color: Colors.white70,
+                        fontSize: 12,
+                      ),
+                    ),
+                  ],
                 );
               },
             ),
           ),
-
-          const SizedBox(height: 15),
-          Padding(
-            padding: const EdgeInsets.only(left: 25, top: 0),
-            child: ListTile(
-              title: const Text('P R O F I L E'),
-              leading: const Icon(Icons.person),
-              onTap: () {
-                Navigator.pop(context);
-
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ProfilePage()),
-                );
-              },
-            ),
+          ListTile(
+            leading: const Icon(Icons.home),
+            title: const Text('Home'),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const HomeScreen()),
+              );
+            },
           ),
-          const SizedBox(height: 15),
-          Padding(
-            padding: const EdgeInsets.only(left: 25, top: 0),
-            child: ListTile(
-              title: const Text('S E T T I N G S'),
-              leading: const Icon(Icons.settings),
-              onTap: () {
-                Navigator.pop(context);
-
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SettingsPage()),
-                );
-              },
-            ),
+          ListTile(
+            leading: const Icon(Icons.person),
+            title: const Text('Profile'),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ProfilePage()),
+              );
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.settings),
+            title: const Text('Settings'),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const SettingsPage()),
+              );
+            },
+          ),
+          const Divider(),
+          ListTile(
+            leading: const Icon(Icons.logout),
+            title: const Text('Logout'),
+            onTap: () {
+              Provider.of<AuthProvider>(context, listen: false).logout();
+              Navigator.pop(context);
+            },
           ),
         ],
       ),

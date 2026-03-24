@@ -1,67 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/pages/home_screen.dart';
-import 'package:flutter_application_1/pages/login_page.dart';
-import 'package:flutter_application_1/pages/profile_page.dart';
-import 'package:flutter_application_1/pages/upload_screen.dart';
 
 class Bottombar extends StatelessWidget {
-  const Bottombar({super.key});
+  final int currentIndex;
+  final Function(int) onTap;
+
+  const Bottombar({super.key, this.currentIndex = 0, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    return BottomAppBar(
-      height: 50,
-      color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          IconButton(icon: const Icon(Icons.search), onPressed: () {}),
-          IconButton(
-            icon: const Icon(Icons.album),
-            onPressed: () {
-              Navigator.pop(context);
-
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => LoginPage()),
-              );
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.add),
-            onPressed: () {
-              Navigator.pop(context);
-
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => UploadScreen()),
-              );
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.home),
-            onPressed: () {
-              Navigator.pop(context);
-
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => HomeScreen()),
-              );
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.person),
-            onPressed: () {
-              Navigator.pop(context);
-
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => ProfilePage()),
-              );
-            },
-          ),
-        ],
-      ),
+    return BottomNavigationBar(
+      currentIndex: currentIndex,
+      onTap: onTap,
+      type: BottomNavigationBarType.fixed,
+      items: const [
+        BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+        BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.add_circle_outline),
+          label: 'Upload',
+        ),
+        BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+      ],
     );
   }
 }

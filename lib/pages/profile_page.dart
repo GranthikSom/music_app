@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/components/My_drawer.dart';
-import 'package:flutter_application_1/components/bottombar.dart';
-import 'package:flutter_application_1/components/song_ball.dart';
-import 'package:flutter_application_1/pages/settings_page.dart';
+import 'package:provider/provider.dart';
+import '../providers/auth_provider.dart';
+import '../components/my_drawer.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -10,89 +9,58 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('')),
-      drawer: MyDrawer(),
-      body: Column(
-        children: [
-          Row(
-            children: [
-              Expanded(
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 15),
-                      child: Row(
-                        children: [
-                          const SizedBox(width: 20),
-                          SongBall(
-                            child: Expanded(
-                              child: GestureDetector(
-                                onTap: () {},
-                                child: CircleAvatar(
-                                  foregroundColor: Theme.of(
-                                    context,
-                                  ).colorScheme.inversePrimary,
-                                  backgroundColor: Theme.of(
-                                    context,
-                                  ).colorScheme.primary,
-                                  radius: 40,
-                                  child: Icon(Icons.person),
-                                ),
-                              ),
-                            ),
-                          ),
-                          const Padding(padding: EdgeInsets.only(right: 10)),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Faxektie op',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.black,
-                                ),
-                              ),
-                              Text(
-                                '@niggaslayer67',
-                                style: TextStyle(
-                                  fontSize: 10,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ],
-                          ),
-                          const Padding(padding: EdgeInsets.only(left: 110)),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.pop(context);
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => SettingsPage(),
-                                ),
-                              );
-                            },
-                            child: Column(
-                              children: [
-                                Icon(
-                                  Icons.settings,
-                                  size: 30,
-                                  color: Theme.of(context).colorScheme.primary,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+      appBar: AppBar(title: const Text('Profile')),
+      drawer: const MyDrawer(),
+      body: Consumer<AuthProvider>(
+        builder: (context, auth, child) {
+          return Padding(
+            padding: const EdgeInsets.all(24),
+            child: Column(
+              children: [
+                const CircleAvatar(
+                  radius: 50,
+                  child: Icon(Icons.person, size: 50),
                 ),
-              ),
-            ],
-          ),
-        ],
+                const SizedBox(height: 24),
+                Text(
+                  auth.email ?? 'Guest',
+                  style: Theme.of(context).textTheme.headlineSmall,
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  'User ID: ${auth.userId ?? 'N/A'}',
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodyMedium?.copyWith(color: Colors.grey),
+                ),
+                const SizedBox(height: 32),
+                const Divider(),
+                ListTile(
+                  leading: const Icon(Icons.email),
+                  title: const Text('Email'),
+                  subtitle: Text(auth.email ?? 'Not logged in'),
+                ),
+                ListTile(
+                  leading: const Icon(Icons.badge),
+                  title: const Text('User ID'),
+                  subtitle: Text(auth.userId ?? 'N/A'),
+                ),
+                const Spacer(),
+                ElevatedButton.icon(
+                  onPressed: () {
+                    auth.logout();
+                  },
+                  icon: const Icon(Icons.logout),
+                  label: const Text('Logout'),
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(double.infinity, 50),
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
       ),
-      bottomNavigationBar: const Bottombar(),
     );
   }
 }

@@ -1,0 +1,14 @@
+meta {
+  name: Upload Audio
+  type: http
+}
+
+post {
+  url: {{baseUrl}}/upload/audio
+  body: formurlencoded
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
