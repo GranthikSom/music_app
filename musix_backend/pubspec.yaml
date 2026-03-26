@@ -1,0 +1,20 @@
+name: musix_backend
+description: Musix API - Backend for music streaming app
+version: 1.0.0+1
+publish_to: none
+
+environment:
+  sdk: ^3.11.0
+
+dependencies:
+  dart_frog: ^1.1.0
+  dart_frog_auth: ^1.2.0
+  dart_jsonwebtoken: ^3.2.0
+  bcrypt: ^1.1.0
+  uuid: ^4.5.0
+  mime: ^2.0.0
+
+dev_dependencies:
+  dart_frog_lint: ^0.1.0
+  mocktail: ^1.0.0
+  test: ^1.0.0

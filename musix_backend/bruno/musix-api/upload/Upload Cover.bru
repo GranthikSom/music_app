@@ -1,0 +1,14 @@
+meta {
+  name: Upload Cover
+  type: http
+}
+
+post {
+  url: {{baseUrl}}/upload/cover
+  body: formurlencoded
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}

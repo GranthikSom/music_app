@@ -1,0 +1,19 @@
+meta {
+  name: Get Favorites
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/favorites
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+vars:pre-request {
+  baseUrl: http://localhost:8080
+}
