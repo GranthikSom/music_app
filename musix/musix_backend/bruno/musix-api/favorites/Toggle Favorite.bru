@@ -1,0 +1,13 @@
+meta {
+  name: Toggle Favorite
+  type: http
+}
+
+post {
+  url: {{baseUrl}}/favorites/:songId
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
